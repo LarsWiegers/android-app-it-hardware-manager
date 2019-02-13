@@ -11,10 +11,12 @@ public class listItem extends LinearLayout {
 
     public listItem(Context context) {
         super(context);
+        init();
     }
 
     public listItem(Context context, AttributeSet attrs) {
         this(context, attrs,0);
+        init();
     }
 
     public listItem(Context context, AttributeSet attrs, int defStyleAttr) {
