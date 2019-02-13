@@ -1,8 +1,10 @@
-package com.example.ithardwaremanager;
+package com.example.ithardwaremanager.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
+
+import com.example.ithardwaremanager.R;
 
 public class listItem extends LinearLayout {
 

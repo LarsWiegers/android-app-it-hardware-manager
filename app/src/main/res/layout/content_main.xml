@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <com.example.ithardwaremanager.listItem
+        <com.example.ithardwaremanager.views.listItem
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
@@ -46,9 +46,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></com.example.ithardwaremanager.listItem>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.example.ithardwaremanager.listItem
+        <com.example.ithardwaremanager.views.listItem
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginStart="32dp"
@@ -57,7 +57,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></com.example.ithardwaremanager.listItem>
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
