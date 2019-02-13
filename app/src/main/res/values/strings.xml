@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IT Hardware Manager</string>
+    <string name="room_name_display">Rooms</string>
+    <string name="action_settings">Settings</string>
+</resources>
