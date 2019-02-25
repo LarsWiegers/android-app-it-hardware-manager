@@ -71,15 +71,12 @@ public class MainActivity extends BaseActivity {
             rooms.add(room);
         }
 
-        BaseAdapter roomAdapter = new RoomAdapter(rooms, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
-                ConstraintLayout parent = (ConstraintLayout) view.getParent();
-                TextView name = parent.findViewById(R.id.name);
-                intent.putExtra("name", name.getText().toString());
-                startActivity(intent);
-            }
+        BaseAdapter roomAdapter = new RoomAdapter(rooms, view -> {
+            Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
+            ConstraintLayout parent = (ConstraintLayout) view.getParent();
+            TextView name = parent.findViewById(R.id.name);
+            intent.putExtra("name", name.getText().toString());
+            startActivity(intent);
         });
 
         ListView listView = findViewById(R.id.roomListView);
