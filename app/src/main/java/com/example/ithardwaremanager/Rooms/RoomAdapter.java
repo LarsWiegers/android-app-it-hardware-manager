@@ -1,14 +1,13 @@
 package com.example.ithardwaremanager.Rooms;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ithardwaremanager.BaseActivity;
-import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.views.listItem;
 
@@ -20,7 +19,11 @@ public class RoomAdapter extends BaseAdapter {
     ArrayList<Room> rooms;
 
     public RoomAdapter(ArrayList<Room> rooms, View.OnClickListener listener) {
-        this.rooms = rooms;
+        if(rooms != null) {
+            this.rooms = rooms;
+        }else {
+            this.rooms = new ArrayList<>();
+        }
         this.listener = listener;
     }
     @Override
@@ -46,6 +49,7 @@ public class RoomAdapter extends BaseAdapter {
         }
         Room room = (Room) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
+        Log.e("ROOM", "" + position);
         name.setText(room.getName());
 
         Button button = listItem.findViewById(R.id.button);
