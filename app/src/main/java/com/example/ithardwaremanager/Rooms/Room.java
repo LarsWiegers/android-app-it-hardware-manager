@@ -1,5 +1,8 @@
 package com.example.ithardwaremanager.Rooms;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.ithardwaremanager.Items.Item;
 
 import org.json.JSONException;
@@ -8,14 +11,12 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room implements Serializable {
+public class Room implements Serializable, Parcelable {
     private String name;
     private ArrayList<Item> items = new ArrayList<Item>();
-    private String id;
     private String description;
 
-    public Room(String id, String name, String description) {
-        this.setId(id);
+    public Room(String name, String description) {
         this.setName(name);
         this.setDescription(description);
     }
@@ -25,14 +26,6 @@ public class Room implements Serializable {
     }
     private String getDescription() {
         return this.description;
-    }
-
-    private void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return this.id;
     }
 
     public Room(JSONObject obj) throws JSONException {
@@ -51,7 +44,6 @@ public class Room implements Serializable {
         JSONObject obj = new JSONObject();
         obj.put("name", this.getName());
         obj.put("description", this.getDescription());
-        obj.put("id", this.getId());
         return obj;
     }
 
@@ -66,4 +58,32 @@ public class Room implements Serializable {
     public String toString() {
         return this.getName();
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.getName());
+        dest.writeString(this.getDescription());
+    }
+
+    protected Room(Parcel in) {
+        name = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<Room> CREATOR = new Creator<Room>() {
+        @Override
+        public Room createFromParcel(Parcel in) {
+            return new Room(in);
+        }
+
+        @Override
+        public Room[] newArray(int size) {
+            return new Room[size];
+        }
+    };
 }

@@ -24,12 +24,6 @@ public class StorageManager {
     private static String filename = "rooms.json";
     private static Context context;
     public static Room findRoomById(String id) {
-        for (Room room: rooms ) {
-            if(room.getId().equals(id)) {
-                return room;
-            }
-
-        }
         return null;
     }
     public static void addRoom(Room room) {
@@ -38,11 +32,6 @@ public class StorageManager {
     }
 
     public static void removeRoom(Room room) {
-        for (int i = 0; i < rooms.size(); i++) {
-            if(rooms.get(i).getId().equals(room.getId())) {
-                rooms.remove(i);
-            }
-        }
         rooms.remove(room);
     }
     public static ArrayList<Room> getRooms() {

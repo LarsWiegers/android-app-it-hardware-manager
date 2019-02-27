@@ -1,6 +1,7 @@
 package com.example.ithardwaremanager.Rooms;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 public class RoomAdapter extends BaseAdapter {
 
     private final View.OnClickListener listener;
-    ArrayList<Room> rooms;
+    ArrayList<Parcelable> rooms;
 
-    public RoomAdapter(ArrayList<Room> rooms, View.OnClickListener listener) {
+    public RoomAdapter(ArrayList<Parcelable> rooms, View.OnClickListener listener) {
         if(rooms != null) {
             this.rooms = rooms;
         }else {
@@ -49,10 +50,8 @@ public class RoomAdapter extends BaseAdapter {
         }
         Room room = (Room) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
-        TextView id = listItem.findViewById(R.id.listItemId);
-        Log.e("ROOM", "" + position);
-        name.setText(room.getName());
-        id.setText(room.getId());
+//        Log.i("room", room.toString());
+//        name.setText(room.getName());
 
         Button button = listItem.findViewById(R.id.button);
         button.setOnClickListener(listener);
