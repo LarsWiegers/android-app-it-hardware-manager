@@ -25,32 +25,15 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity {
 
     ArrayList<Room> rooms = new ArrayList<>();
-    StorageManager storageManager = new StorageManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("lifeCycle: ", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        boolean isFilePresent = storageManager.isFilePresent(this, "rooms.json");
-        if(isFilePresent) {
-            String jsonString = storageManager.read(this, "rooms.json");
-            try {
-                JSONArray array = new JSONArray(jsonString);
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject obj = array.getJSONObject(i);
-                    this.rooms.add(new Room(obj));
-                }
-            } catch (JSONException e) {
-                Log.i("lifeCycle: ", e.getMessage());
-
-            }
-
-        } else {
-            storageManager.create(this, "rooms.json", "{}");
-        }
-
+        StorageManager.setContext(this);
+        StorageManager.read();
+        this.rooms = StorageManager.getRooms();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
@@ -64,18 +47,16 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         Log.i("lifeCycle: ", "onResume");
-
-        if(getIntent().getSerializableExtra("newRoom") != null) {
-            Intent i = getIntent();
-            Room room = (Room) i.getSerializableExtra("newRoom");
-            rooms.add(room);
-        }
-
+        this.rooms = StorageManager.getRooms();
         BaseAdapter roomAdapter = new RoomAdapter(rooms, view -> {
             Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
             ConstraintLayout parent = (ConstraintLayout) view.getParent();
+            TextView id = parent.findViewById(R.id.listItemId);
             TextView name = parent.findViewById(R.id.name);
             intent.putExtra("name", name.getText().toString());
+            Log.i("id = ", id.getText().toString());
+            Room room = StorageManager.findRoomById(id.getText().toString());
+            intent.putExtra("room", room);
             startActivity(intent);
         });
 
@@ -94,7 +75,7 @@ public class MainActivity extends BaseActivity {
         super.onPause();
         Log.i("lifeCycle: ", "onPause");
         try {
-            storageManager.save(rooms, this);
+            StorageManager.save(rooms);
 
         } catch (JSONException e) {
             e.printStackTrace();

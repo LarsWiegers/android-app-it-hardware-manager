@@ -2,4 +2,6 @@
     <string name="app_name">IT Hardware Manager</string>
     <string name="room_name_display">Rooms</string>
     <string name="action_settings">Settings</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>

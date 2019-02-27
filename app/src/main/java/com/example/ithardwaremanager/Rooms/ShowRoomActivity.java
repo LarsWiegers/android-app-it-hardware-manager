@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.ithardwaremanager.Items.AddItemActivity;
+import com.example.ithardwaremanager.Items.Item;
+import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
+import com.example.ithardwaremanager.storage.StorageManager;
 
 public class ShowRoomActivity extends AppCompatActivity {
+
+    Room room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,17 +27,19 @@ public class ShowRoomActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ShowRoomActivity.this, AddItemActivity.class);
-                startActivity(intent);
-            }
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(ShowRoomActivity.this, AddItemActivity.class);
+            startActivity(intent);
         });
 
-        Intent i = getIntent();
-        String name = (String) i.getSerializableExtra("name");
-        TextView text = findViewById(R.id.name);
-        text.setText(name);
+        if(getIntent().getSerializableExtra("room") != null) {
+            Intent intent = getIntent();
+            room = (Room) intent.getSerializableExtra("room");
+        }
+    }
+    public void onDeleteClick(View view) {
+        StorageManager.removeRoom(room);
+        Intent intent = new Intent(ShowRoomActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

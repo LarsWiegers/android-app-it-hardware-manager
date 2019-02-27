@@ -1,7 +1,9 @@
 package com.example.ithardwaremanager.storage;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.Rooms.Room;
 
 import org.json.JSONArray;
@@ -18,15 +20,41 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class StorageManager {
+    private static ArrayList<Room> rooms = new ArrayList<>();
+    private static String filename = "rooms.json";
+    private static Context context;
+    public static Room findRoomById(String id) {
+        for (Room room: rooms ) {
+            if(room.getId().equals(id)) {
+                return room;
+            }
 
-    public void save(ArrayList<Room> rooms, Context context) throws JSONException {
+        }
+        return null;
+    }
+    public static void addRoom(Room room) {
+
+        rooms.add(room);
+    }
+
+    public static void removeRoom(Room room) {
+        for (int i = 0; i < rooms.size(); i++) {
+            if(rooms.get(i).getId().equals(room.getId())) {
+                rooms.remove(i);
+            }
+        }
+        rooms.remove(room);
+    }
+    public static ArrayList<Room> getRooms() {
+        return rooms;
+    }
+    public static void save(ArrayList<Room> rooms) throws JSONException {
         JSONArray array = new JSONArray();
         for (int i = 0; i < rooms.size(); i++) {
             JSONObject obj = rooms.get(i).toJSONObject();
             array.put(obj);
         }
 
-        String filename = "rooms.json";
         FileOutputStream outputStream;
 
         try {
@@ -38,9 +66,9 @@ public class StorageManager {
         }
     }
 
-    public String read(Context context, String fileName) {
+    public static void read() {
         try {
-            FileInputStream fis = context.openFileInput(fileName);
+            FileInputStream fis = context.openFileInput(filename);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
@@ -48,18 +76,30 @@ public class StorageManager {
             while ((line = bufferedReader.readLine()) != null) {
                 sb.append(line);
             }
-            return sb.toString();
-        } catch (FileNotFoundException fileNotFound) {
-            return null;
-        } catch (IOException ioException) {
-            return null;
+            String jsonString = sb.toString();
+            try {
+                JSONArray array = new JSONArray(jsonString);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject obj = array.getJSONObject(i);
+                    rooms.add(new Room(obj));
+                }
+            } catch (JSONException e) {
+                Log.i("JSON EXCEPTION", "ERROR");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public boolean create(Context context, String fileName, String jsonString){
-        String FILENAME = "storage.json";
+    public static void setContext(Context mainActivityContext) {
+        context = mainActivityContext;
+    }
+
+    public boolean create(Context context, String jsonString){
         try {
-            FileOutputStream fos = context.openFileOutput(fileName,Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(filename,Context.MODE_PRIVATE);
             if (jsonString != null) {
                 fos.write(jsonString.getBytes());
             }
