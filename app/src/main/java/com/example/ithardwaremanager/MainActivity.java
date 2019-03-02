@@ -64,10 +64,11 @@ public class MainActivity extends BaseActivity {
      * @param savedInstanceState is the given state
      */
     private void loadRoomsFromState(Bundle savedInstanceState) {
-
+        Log.i("loadRoomsFromState", "tes");
         if(savedInstanceState != null && savedInstanceState.containsKey("rooms")) {
             Log.i("loadRoomsFromState = ", "" + savedInstanceState.toString());
             this.rooms = savedInstanceState.getParcelableArrayList("rooms");
+            loadRoomsFromIntent();
         }else {
             this.rooms = new ArrayList<>();
         }

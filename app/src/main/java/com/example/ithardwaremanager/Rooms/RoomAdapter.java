@@ -50,8 +50,7 @@ public class RoomAdapter extends BaseAdapter {
         }
         Room room = (Room) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
-//        Log.i("room", room.toString());
-//        name.setText(room.getName());
+        name.setText(room.getName());
 
         Button button = listItem.findViewById(R.id.button);
         button.setOnClickListener(listener);
