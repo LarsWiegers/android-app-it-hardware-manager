@@ -39,6 +39,8 @@ public class MainActivity extends BaseActivity {
     private void setupRoomList() {
         BaseAdapter roomAdapter = new RoomAdapter(rooms, view -> {
             Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
+            Parcelable room = this.rooms.get(0);
+            intent.putExtra("room", room);
             startActivity(intent);
         });
 

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Room implements Serializable, Parcelable {
     private String name;
-    private ArrayList<Item> items = new ArrayList<Item>();
+    private ArrayList<Parcelable> items = new ArrayList<>();
     private String description;
 
     public Room(String name, String description) {
@@ -47,7 +47,7 @@ public class Room implements Serializable, Parcelable {
         return obj;
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<Parcelable> getItems() {
         return this.items;
     }
 

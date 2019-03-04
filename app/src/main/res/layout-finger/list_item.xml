@@ -33,7 +33,7 @@
             android:layout_marginBottom="16dp"
             android:layout_weight="1"
             android:baselineAligned="false"
-            android:text="Button"
+            android:text="SHOW"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
