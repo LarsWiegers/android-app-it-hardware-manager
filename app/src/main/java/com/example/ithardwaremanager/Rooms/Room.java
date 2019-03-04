@@ -2,6 +2,7 @@ package com.example.ithardwaremanager.Rooms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.ViewParent;
 
 import com.example.ithardwaremanager.Items.Item;
 
@@ -21,10 +22,19 @@ public class Room implements Serializable, Parcelable {
         this.setDescription(description);
     }
 
+    public static Parcelable getByName(ArrayList<Parcelable> rooms, String name) {
+        for (Parcelable room: rooms) {
+            if(((Room) room).getName().equals(name)) {
+                return room;
+            }
+        }
+        return null;
+    }
+
     private void setDescription(String description) {
         this.description = description;
     }
-    private String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
@@ -39,6 +49,7 @@ public class Room implements Serializable, Parcelable {
     public String getName() {
         return name;
     }
+
 
     public JSONObject toJSONObject() throws JSONException {
         JSONObject obj = new JSONObject();

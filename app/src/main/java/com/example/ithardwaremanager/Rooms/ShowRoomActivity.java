@@ -33,11 +33,9 @@ public class ShowRoomActivity extends AppCompatActivity {
 
         if(getIntent().getParcelableExtra("room") != null) {
             Intent intent = getIntent();
-            Log.i("get intent room", "yess");
             room = intent.getParcelableExtra("room");
         }
         if(getIntent().getParcelableExtra("item") != null) {
-            Log.i("get intent item", "yess");
             room.addItem(getIntent().getParcelableExtra("item"));
         }
 
@@ -80,8 +78,13 @@ public class ShowRoomActivity extends AppCompatActivity {
     }
 
     public void onDeleteClick(View view) {
-        StorageManager.removeRoom(room);
         Intent intent = new Intent(ShowRoomActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void onEditClick(View view) {
+        Intent intent = new Intent(ShowRoomActivity.this, EditRoomActivity.class);
+        intent.putExtra("room", (Parcelable) room);
         startActivity(intent);
     }
 }

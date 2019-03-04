@@ -3,10 +3,12 @@ package com.example.ithardwaremanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.ithardwaremanager.Rooms.AddRoomActivity;
 import com.example.ithardwaremanager.Rooms.Room;
@@ -39,7 +41,11 @@ public class MainActivity extends BaseActivity {
     private void setupRoomList() {
         BaseAdapter roomAdapter = new RoomAdapter(rooms, view -> {
             Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
-            Parcelable room = this.rooms.get(0);
+
+            ConstraintLayout parent = (ConstraintLayout) view.getParent();
+            TextView name = parent.findViewById(R.id.name);
+
+            Parcelable room = Room.getByName(this.rooms, name.getText().toString());
             intent.putExtra("room", room);
             startActivity(intent);
         });
