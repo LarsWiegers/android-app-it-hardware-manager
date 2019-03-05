@@ -72,4 +72,9 @@ public class Item implements Serializable, Parcelable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "( " + this.getName() + " , " + this.getDescription() + " )";
+    }
 }

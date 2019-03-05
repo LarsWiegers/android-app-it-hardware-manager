@@ -2,7 +2,7 @@ package com.example.ithardwaremanager.Rooms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.ViewParent;
+import android.util.Log;
 
 import com.example.ithardwaremanager.Items.Item;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Room implements Serializable, Parcelable {
     private String name;
-    private ArrayList<Parcelable> items = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
     private String description;
 
     public Room(String name, String description) {
@@ -31,7 +31,7 @@ public class Room implements Serializable, Parcelable {
         return null;
     }
 
-    private void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     public String getDescription() {
@@ -42,7 +42,7 @@ public class Room implements Serializable, Parcelable {
         this.setName(obj.getString("name"));
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -58,16 +58,20 @@ public class Room implements Serializable, Parcelable {
         return obj;
     }
 
-    public ArrayList<Parcelable> getItems() {
+    public ArrayList<Item> getItems() {
         return this.items;
     }
 
     public void addItem(Item item) {
+        Log.i("addItem", items.toString());
+        Log.i("addItem", item.toString());
         this.items.add(item);
+        Log.i("addItem", items.toString());
+        Log.i("addItem", item.toString());
     }
 
     public String toString() {
-        return this.getName();
+        return this.getName() + ", " + this.items;
     }
 
     @Override
@@ -79,11 +83,13 @@ public class Room implements Serializable, Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.getName());
         dest.writeString(this.getDescription());
+        dest.writeTypedList(this.getItems());
     }
 
     protected Room(Parcel in) {
         name = in.readString();
         description = in.readString();
+        items = in.createTypedArrayList(Item.CREATOR);
     }
 
     public static final Creator<Room> CREATOR = new Creator<Room>() {

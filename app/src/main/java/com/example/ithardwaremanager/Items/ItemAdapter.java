@@ -16,9 +16,9 @@ import java.util.ArrayList;
 public class ItemAdapter extends BaseAdapter {
 
     private final View.OnClickListener listener;
-    ArrayList<Parcelable> items;
+    ArrayList<Item> items;
 
-    public ItemAdapter(ArrayList<Parcelable> rooms, View.OnClickListener listener) {
+    public ItemAdapter(ArrayList<Item> rooms, View.OnClickListener listener) {
         if(rooms != null) {
             this.items = rooms;
         }else {

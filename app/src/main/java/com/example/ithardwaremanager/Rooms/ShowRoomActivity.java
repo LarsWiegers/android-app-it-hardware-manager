@@ -31,13 +31,10 @@ public class ShowRoomActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if(getIntent().getParcelableExtra("room") != null) {
-            Intent intent = getIntent();
-            room = intent.getParcelableExtra("room");
-        }
-        if(getIntent().getParcelableExtra("item") != null) {
-            room.addItem(getIntent().getParcelableExtra("item"));
-        }
+        room = (Room) StorageManager.getRooms().get(getIntent().getIntExtra("roomIndex", 0));
+        Log.i("rooms 1", room.getItems().toString());
+        Log.i("rooms 1", "" + getIntent().getIntExtra("roomIndex", 0));
+        Log.i("abc", StorageManager.getRooms().toString());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
@@ -46,8 +43,6 @@ public class ShowRoomActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
         setupRoomList();
     }
 
@@ -55,6 +50,7 @@ public class ShowRoomActivity extends AppCompatActivity {
      * Sets up the room list that is the main point of this activity
      */
     private void setupRoomList() {
+        Log.i("rooms ", room.getItems().toString());
         BaseAdapter roomAdapter = new ItemAdapter(room.getItems(), view -> {
             Intent intent = new Intent(ShowRoomActivity.this, ShowItemActivity.class);
             startActivity(intent);
@@ -64,20 +60,10 @@ public class ShowRoomActivity extends AppCompatActivity {
         listView.setAdapter(roomAdapter);
     }
 
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(getIntent().getSerializableExtra("room") != null) {
-            Intent intent = getIntent();
-            room = (Room) intent.getSerializableExtra("room");
-        }
-        if(getIntent().getParcelableExtra("item") != null) {
-            room.addItem(getIntent().getParcelableExtra("item"));
-        }
-    }
-
     public void onDeleteClick(View view) {
+        StorageManager.removeRoom(room);
+        Log.i("rooms = ", StorageManager.getRooms().toString());
+        Log.i("room= ", room.toString());
         Intent intent = new Intent(ShowRoomActivity.this, MainActivity.class);
         startActivity(intent);
     }

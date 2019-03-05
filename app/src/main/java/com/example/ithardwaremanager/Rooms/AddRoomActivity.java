@@ -24,17 +24,16 @@ public class AddRoomActivity extends BaseActivity {
     }
 
     public void onClickAddButton(View view) {
-
-        Intent intent = new Intent(AddRoomActivity.this, MainActivity.class);
-
         TextView nameField = findViewById(R.id.name);
         TextView descriptionField = findViewById(R.id.description);
 
         String name = nameField.getText().toString();
         String description = descriptionField.getText().toString();
+
         Room room = new Room( name, description);
-        intent.putExtra("room", (Parcelable) room);
-        Log.i("room tes",((Parcelable) room).toString() );
+        StorageManager.addRoom(room);
+
+        Intent intent = new Intent(AddRoomActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

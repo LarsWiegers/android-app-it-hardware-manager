@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.ithardwaremanager.BaseActivity;
 import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
+import com.example.ithardwaremanager.storage.StorageManager;
 
 public class EditRoomActivity extends BaseActivity {
 
@@ -39,16 +40,19 @@ public class EditRoomActivity extends BaseActivity {
 
     public void onClickAddButton(View view) {
 
-        Intent intent = new Intent(EditRoomActivity.this, MainActivity.class);
-
         TextView nameField = findViewById(R.id.name);
         TextView descriptionField = findViewById(R.id.description);
 
         String name = nameField.getText().toString();
         String description = descriptionField.getText().toString();
-        Room room = new Room( name, description);
-        intent.putExtra("room", (Parcelable) room);
-        Log.i("room tes",((Parcelable) room).toString() );
+
+
+        int index = StorageManager.getIndex(room);
+        room.setName(name);
+        room.setDescription(description);
+        StorageManager.updateRoom(room, index);
+
+        Intent intent = new Intent(EditRoomActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

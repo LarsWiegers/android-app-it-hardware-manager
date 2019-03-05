@@ -14,6 +14,7 @@ import com.example.ithardwaremanager.Rooms.AddRoomActivity;
 import com.example.ithardwaremanager.Rooms.Room;
 import com.example.ithardwaremanager.Rooms.RoomAdapter;
 import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
+import com.example.ithardwaremanager.storage.StorageManager;
 
 import java.util.ArrayList;
 
@@ -27,9 +28,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadRoomsFromState(savedInstanceState);
-        loadRoomsFromIntent();
-
         setupFab();
 
         setupRoomList();
@@ -39,61 +37,20 @@ public class MainActivity extends BaseActivity {
      * Sets up the room list that is the main point of this activity
      */
     private void setupRoomList() {
+        rooms = StorageManager.getRooms();
         BaseAdapter roomAdapter = new RoomAdapter(rooms, view -> {
             Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
 
             ConstraintLayout parent = (ConstraintLayout) view.getParent();
             TextView name = parent.findViewById(R.id.name);
 
-            Parcelable room = Room.getByName(this.rooms, name.getText().toString());
+            Parcelable room = Room.getByName(rooms, name.getText().toString());
             intent.putExtra("room", room);
             startActivity(intent);
         });
 
         ListView listView = findViewById(R.id.roomListView);
         listView.setAdapter(roomAdapter);
-    }
-
-    /**
-     * If there is a intent with a room
-     */
-    private void loadRoomsFromIntent() {
-        Intent intent = getIntent();
-        if(intent != null && intent.getParcelableExtra("room") != null) {
-            Room room = intent.getParcelableExtra("room");
-            Log.i("room flksdjlsd", room.toString());
-            this.rooms.add(room);
-        }
-    }
-
-    /**
-     * Determines if there is a rooms Arraylist in the saved state and set it to the MainActivity
-     * property. This is to not reset the rooms on this activity.
-     * @param savedInstanceState is the given state
-     */
-    private void loadRoomsFromState(Bundle savedInstanceState) {
-        Log.i("loadRoomsFromState", "tes");
-        if(savedInstanceState != null && savedInstanceState.containsKey("rooms")) {
-            Log.i("loadRoomsFromState = ", "" + savedInstanceState.toString());
-            this.rooms = savedInstanceState.getParcelableArrayList("rooms");
-            loadRoomsFromIntent();
-        }else {
-            this.rooms = new ArrayList<>();
-        }
-
-    }
-
-    /**
-     * Saves the current state so we can pickup later where we left off.
-     * @param outState the state we are saving to
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.i("saving rooms", "yup");
-        outState.putParcelableArrayList("rooms", this.rooms);
-        Log.i("saving rooms", this.rooms.toString());
-        Log.i("saving rooms", outState.toString());
-        super.onSaveInstanceState(outState);
     }
 
     /**
