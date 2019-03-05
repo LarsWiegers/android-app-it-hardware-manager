@@ -5,4 +5,6 @@
     <string name="action_settings">Opties</string>
     <string name="edit">Aanpassen</string>
     <string name="delete">Verwijder</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_delete_screen">Weet je zeker of je dit wil verwijderen?</string>
 </resources>

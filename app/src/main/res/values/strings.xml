@@ -4,4 +4,6 @@
     <string name="action_settings">Settings</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_delete_screen">Are you sure you wanna delete this?</string>
 </resources>

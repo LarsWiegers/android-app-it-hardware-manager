@@ -1,5 +1,7 @@
 package com.example.ithardwaremanager.Rooms;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.ithardwaremanager.Items.AddItemActivity;
@@ -19,6 +22,8 @@ import com.example.ithardwaremanager.Items.ShowItemActivity;
 import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.storage.StorageManager;
+
+import org.w3c.dom.Text;
 
 public class ShowRoomActivity extends AppCompatActivity {
 
@@ -32,6 +37,8 @@ public class ShowRoomActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         room = (Room) StorageManager.getRooms().get(getIntent().getIntExtra("roomIndex", 0));
+        TextView text = findViewById(R.id.name);
+        text.setText(room.getName());
         Log.i("rooms 1", room.getItems().toString());
         Log.i("rooms 1", "" + getIntent().getIntExtra("roomIndex", 0));
         Log.i("abc", StorageManager.getRooms().toString());
