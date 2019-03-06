@@ -21,6 +21,7 @@ import com.example.ithardwaremanager.storage.StorageManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static boolean filledWithTestData = false;
     /**
      * Handles the onCreate event that is going to happen when the activity gets called
      * @param savedInstanceState Used for android working correctly
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         Log.i("lifeCycle: ", "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(!filledWithTestData) {
+            StorageManager.fillWithTestData();
+            filledWithTestData = true;
+        }
 
         setupFab();
 

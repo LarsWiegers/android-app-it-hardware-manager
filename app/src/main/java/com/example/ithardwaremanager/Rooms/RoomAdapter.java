@@ -53,16 +53,17 @@ public class RoomAdapter extends BaseAdapter {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        DrawView.shouldDraw(true);
         View listItem = convertView;
         if (convertView == null) {
              listItem = new listItem(parent.getContext());
         }
-        DrawView.shouldDraw(true);
         Room room = (Room) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
         name.setText(room.getName());
         Log.i("set_text", "" + room.getItems().size());
-        DrawView.setText("" + room.getItems().size());
+        DrawView number = listItem.findViewById(R.id.numberOfItems);
+        number.setText("" + room.getItems().size());
 
         Button button = listItem.findViewById(R.id.button);
         button.setOnClickListener(listener);

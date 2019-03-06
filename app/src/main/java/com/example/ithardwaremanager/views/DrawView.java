@@ -10,7 +10,7 @@ import android.view.View;
 
 public class DrawView extends View {
     Paint paint = new Paint();
-    static String textToBeWritten;
+    String textToBeWritten;
     static boolean shouldDraw;
 
     private void init() {
@@ -32,7 +32,7 @@ public class DrawView extends View {
         init();
     }
 
-    public static void setText(String text) {
+    public void setText(String text) {
         textToBeWritten = text;
     }
 

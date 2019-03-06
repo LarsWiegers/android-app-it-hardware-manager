@@ -3,6 +3,7 @@ package com.example.ithardwaremanager.storage;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.example.ithardwaremanager.Items.Item;
 import com.example.ithardwaremanager.Rooms.Room;
 import java.util.ArrayList;
 
@@ -12,6 +13,14 @@ public class StorageManager {
      */
     private static ArrayList<Parcelable> rooms = new ArrayList<>();
 
+    public static void fillWithTestData() {
+        Room room = new Room("room with items", "This room has items");
+        room.addItem(new Item("I am a item", "this is a description"));
+        rooms.add(room);
+
+        Room roomWithoutItems = new Room("room without items", "no items to be found here");
+        rooms.add(roomWithoutItems);
+    }
     /**
      * Add a room
      * @param room the room we want to add
