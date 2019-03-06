@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             TextView name = parent.findViewById(R.id.name);
 
             Parcelable room = Room.getByName(StorageManager.getRooms(), name.getText().toString());
-            intent.putExtra("room", room);
+            intent.putExtra("roomIndex", StorageManager.getIndex( (Room) room));
             startActivity(intent);
         });
 
