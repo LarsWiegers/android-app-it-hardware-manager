@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.Rooms.Room;
 import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
@@ -26,13 +23,11 @@ public class EditItemActivity extends AppCompatActivity {
 
         if(getIntent().getSerializableExtra("room") != null) {
             Intent intent = getIntent();
-            Log.i("got room from extra", "true");
             room = (Room) intent.getSerializableExtra("room");
         }
 
         if(getIntent().getSerializableExtra("item") != null) {
             Intent intent = getIntent();
-            Log.i("got room from extra", "true");
             room = (Room) intent.getSerializableExtra("room");
         }
 
@@ -47,7 +42,6 @@ public class EditItemActivity extends AppCompatActivity {
 
         intent.putExtra("item",(Parcelable) new Item(name, description));
         intent.putExtra("room",(Parcelable) room);
-        Log.i("put extra", room.toString());
         startActivity(intent);
     }
 }

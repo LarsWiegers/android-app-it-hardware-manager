@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.example.ithardwaremanager.R;
@@ -39,17 +38,14 @@ public class ShowItemActivity extends AppCompatActivity {
         nameField.setEnabled(false);
         TextView descriptionField = findViewById(R.id.description);
         descriptionField.setEnabled(false);
-        Log.i("item", item.toString());
         nameField.setText(item.getName());
         descriptionField.setText(item.getDescription());
     }
 
     public void onDeleteClick(View view) {
-        Log.i("room", room.toString());
         int index = StorageManager.getIndex(room);
         room.removeItem(item);
         StorageManager.updateRoom(room, index);
-        Log.i("room", room.toString());
         Intent intent = new Intent(ShowItemActivity.this, ShowRoomActivity.class);
         intent.putExtra("room", (Parcelable) room);
         startActivity(intent);

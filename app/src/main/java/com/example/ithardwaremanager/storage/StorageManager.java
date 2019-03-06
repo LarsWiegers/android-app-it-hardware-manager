@@ -1,7 +1,6 @@
 package com.example.ithardwaremanager.storage;
 
 import android.os.Parcelable;
-import android.util.Log;
 
 import com.example.ithardwaremanager.Items.Item;
 import com.example.ithardwaremanager.Rooms.Room;

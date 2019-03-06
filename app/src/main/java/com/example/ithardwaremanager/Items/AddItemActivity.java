@@ -2,10 +2,8 @@ package com.example.ithardwaremanager.Items;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,13 +38,8 @@ public class AddItemActivity extends AppCompatActivity {
 
         Item item = new Item(name, description);
         int index = StorageManager.getIndex(room);
-        Log.i("room add", room.toString());
-        Log.i("room add", "" + room.getItems());
         room.addItem(item);
-        Log.i("room add", "" + index);
         StorageManager.updateRoom(room, index);
-        Log.i("room add", "" + StorageManager.getRooms());
-        Log.i("room add", "" + room.getItems());
 
         Intent intent = new Intent(AddItemActivity.this, ShowRoomActivity.class);
         intent.putExtra("roomIndex", StorageManager.getIndex(room));

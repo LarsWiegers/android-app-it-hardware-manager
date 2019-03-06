@@ -2,12 +2,8 @@ package com.example.ithardwaremanager.Rooms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 import com.example.ithardwaremanager.Items.Item;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -62,11 +58,7 @@ public class Room implements Serializable, Parcelable {
     }
 
     public void addItem(Item item) {
-        Log.i("addItem", items.toString());
-        Log.i("addItem", item.toString());
         this.items.add(item);
-        Log.i("addItem", items.toString());
-        Log.i("addItem", item.toString());
     }
 
     public String toString() {

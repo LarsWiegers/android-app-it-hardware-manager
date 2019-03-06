@@ -1,8 +1,6 @@
 package com.example.ithardwaremanager.Rooms;
 
-import android.content.Intent;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -61,7 +59,6 @@ public class RoomAdapter extends BaseAdapter {
         Room room = (Room) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
         name.setText(room.getName());
-        Log.i("set_text", "" + room.getItems().size());
         DrawView number = listItem.findViewById(R.id.numberOfItems);
         number.setText("" + room.getItems().size());
 
