@@ -3,17 +3,16 @@ package com.example.ithardwaremanager.Rooms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.example.ithardwaremanager.BaseActivity;
 import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.storage.StorageManager;
 
-public class AddRoomActivity extends BaseActivity {
+public class AddRoomActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

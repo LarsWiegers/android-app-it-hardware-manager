@@ -95,7 +95,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
-
+        <!-- android:text="temp" is changed inside the activity to the name of the room -->
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"

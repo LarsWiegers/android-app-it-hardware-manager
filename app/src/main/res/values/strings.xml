@@ -5,5 +5,9 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="add">add</string>
+    <string name="show">show</string>
     <string name="dialog_delete_screen">Are you sure you wanna delete this?</string>
+    <string name="description">description</string>
+    <string name="name">name</string>
 </resources>

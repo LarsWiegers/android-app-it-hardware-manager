@@ -6,5 +6,9 @@
     <string name="edit">Aanpassen</string>
     <string name="delete">Verwijder</string>
     <string name="cancel">Cancel</string>
+    <string name="add">toevoegen</string>
+    <string name="show">zien</string>
     <string name="dialog_delete_screen">Weet je zeker of je dit wil verwijderen?</string>
+    <string name="description">Beschrijving</string>
+    <string name="name">naam</string>
 </resources>
