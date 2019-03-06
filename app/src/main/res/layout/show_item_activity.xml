@@ -38,7 +38,7 @@
         tools:context=".Rooms.AddRoomActivity"
         tools:showIn="@layout/activity_main">
 
-        <PlainText
+        <EditText
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="60dp"
@@ -46,13 +46,14 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="name"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <PlainText
+        <EditText
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="60dp"
@@ -60,6 +61,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="description"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"

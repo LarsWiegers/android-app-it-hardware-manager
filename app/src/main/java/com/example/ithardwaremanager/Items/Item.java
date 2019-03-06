@@ -3,10 +3,13 @@ package com.example.ithardwaremanager.Items;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.ithardwaremanager.Rooms.Room;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Item implements Serializable, Parcelable {
     private String name;
@@ -15,6 +18,15 @@ public class Item implements Serializable, Parcelable {
     public Item(String name, String description) {
         this.setName(name);
         this.setDescription(description);
+    }
+
+    public static Parcelable getByName(ArrayList<Item> items, String name) {
+        for (Parcelable item: items) {
+            if(((Item) item).getName().equals(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     public Item(JSONObject obj) throws JSONException {

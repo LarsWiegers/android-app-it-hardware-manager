@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +27,8 @@ import com.example.ithardwaremanager.storage.StorageManager;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class ShowRoomActivity extends AppCompatActivity {
 
     Room room;
@@ -39,9 +43,6 @@ public class ShowRoomActivity extends AppCompatActivity {
         room = (Room) StorageManager.getRooms().get(getIntent().getIntExtra("roomIndex", 0));
         TextView text = findViewById(R.id.name);
         text.setText(room.getName());
-        Log.i("rooms 1", room.getItems().toString());
-        Log.i("rooms 1", "" + getIntent().getIntExtra("roomIndex", 0));
-        Log.i("abc", StorageManager.getRooms().toString());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
@@ -57,9 +58,15 @@ public class ShowRoomActivity extends AppCompatActivity {
      * Sets up the room list that is the main point of this activity
      */
     private void setupRoomList() {
-        Log.i("rooms ", room.getItems().toString());
-        BaseAdapter roomAdapter = new ItemAdapter(room.getItems(), view -> {
+        ArrayList<Item> items = room.getItems();
+        BaseAdapter roomAdapter = new ItemAdapter(items, view -> {
             Intent intent = new Intent(ShowRoomActivity.this, ShowItemActivity.class);
+            ConstraintLayout parent = (ConstraintLayout) view.getParent();
+            TextView name = parent.findViewById(R.id.name);
+
+            Parcelable item = Item.getByName(items, name.getText().toString());
+            intent.putExtra("item", item);
+            intent.putExtra("room", (Parcelable) room);
             startActivity(intent);
         });
 
@@ -69,8 +76,6 @@ public class ShowRoomActivity extends AppCompatActivity {
 
     public void onDeleteClick(View view) {
         StorageManager.removeRoom(room);
-        Log.i("rooms = ", StorageManager.getRooms().toString());
-        Log.i("room= ", room.toString());
         Intent intent = new Intent(ShowRoomActivity.this, MainActivity.class);
         startActivity(intent);
     }

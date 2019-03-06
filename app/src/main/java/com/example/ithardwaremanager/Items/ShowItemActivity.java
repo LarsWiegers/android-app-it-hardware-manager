@@ -2,13 +2,23 @@ package com.example.ithardwaremanager.Items;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
+import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
+import com.example.ithardwaremanager.Rooms.EditRoomActivity;
+import com.example.ithardwaremanager.Rooms.Room;
+import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
+import com.example.ithardwaremanager.storage.StorageManager;
+
 public class ShowItemActivity extends AppCompatActivity {
     Item item;
+    Room room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,18 +27,39 @@ public class ShowItemActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if(getIntent().getParcelableExtra("room") != null) {
+            Intent intent = getIntent();
+            room = intent.getParcelableExtra("room");
+        }
+
         if(getIntent().getParcelableExtra("item") != null) {
             Intent intent = getIntent();
             item = intent.getParcelableExtra("item");
         }
 
         TextView nameField = findViewById(R.id.name);
+        nameField.setEnabled(false);
         TextView descriptionField = findViewById(R.id.description);
+        descriptionField.setEnabled(false);
+        Log.i("item", item.toString());
+        nameField.setText(item.getName());
+        descriptionField.setText(item.getDescription());
+    }
 
-        String name = nameField.getText().toString();
-        String description = descriptionField.getText().toString();
+    public void onDeleteClick(View view) {
+        Log.i("room", room.toString());
+        int index = StorageManager.getIndex(room);
+        room.removeItem(item);
+        StorageManager.updateRoom(room, index);
+        Log.i("room", room.toString());
+        Intent intent = new Intent(ShowItemActivity.this, ShowRoomActivity.class);
+        intent.putExtra("room", (Parcelable) room);
+        startActivity(intent);
+    }
 
-        nameField.setText(name);
-        descriptionField.setText(description);
+    public void onEditClick(View view) {
+        Intent intent = new Intent(ShowItemActivity.this, EditRoomActivity.class);
+        intent.putExtra("room", (Parcelable) room);
+        startActivity(intent);
     }
 }

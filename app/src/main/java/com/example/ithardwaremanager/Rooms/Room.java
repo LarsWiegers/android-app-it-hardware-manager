@@ -103,4 +103,13 @@ public class Room implements Serializable, Parcelable {
             return new Room[size];
         }
     };
+
+    public void removeItem(Item item) {
+        for (int i = 0; i < this.items.size(); i++) {
+            if(this.items.get(i).getName().equals(item.getName())) {
+                this.items.remove(i);
+            }
+        }
+        this.items.remove(item);
+    }
 }
