@@ -41,8 +41,10 @@ public class ShowRoomActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         room = (Room) StorageManager.getRooms().get(getIntent().getIntExtra("roomIndex", 0));
-        TextView text = findViewById(R.id.name);
-        text.setText(room.getName());
+        TextView name = findViewById(R.id.name);
+        TextView description = findViewById(R.id.description);
+        name.setText(room.getName());
+        description.setText(room.getDescription());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {

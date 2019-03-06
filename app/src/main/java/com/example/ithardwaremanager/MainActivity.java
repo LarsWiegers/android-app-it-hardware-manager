@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
+        Log.i("config", newConfig.toString());
+        Toast.makeText(this, Configuration.ORIENTATION_LANDSCAPE, Toast.LENGTH_SHORT).show();
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     /**
      * Sets up the room list that is the main point of this activity
