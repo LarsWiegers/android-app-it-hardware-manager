@@ -19,8 +19,6 @@ import com.example.ithardwaremanager.Rooms.RoomAdapter;
 import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
 import com.example.ithardwaremanager.storage.StorageManager;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     /**
      * Sets up the room list that is the main point of this activity

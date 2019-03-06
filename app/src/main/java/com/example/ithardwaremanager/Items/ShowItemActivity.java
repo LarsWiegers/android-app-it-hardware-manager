@@ -8,8 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.example.ithardwaremanager.MainActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.Rooms.EditRoomActivity;
 import com.example.ithardwaremanager.Rooms.Room;

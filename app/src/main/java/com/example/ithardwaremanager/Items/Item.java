@@ -29,11 +29,6 @@ public class Item implements Serializable, Parcelable {
         return null;
     }
 
-    public Item(JSONObject obj) throws JSONException {
-        this.setName(obj.getString("name"));
-        this.setDescription(obj.getString("description"));
-    }
-
     protected Item(Parcel in) {
         name = in.readString();
         description = in.readString();
@@ -57,13 +52,6 @@ public class Item implements Serializable, Parcelable {
 
     public String getName() {
         return name;
-    }
-
-    public JSONObject toJSONObject() throws JSONException {
-        JSONObject obj = new JSONObject();
-        obj.put("name", this.getName());
-        obj.put("description", this.getDescription());
-        return obj;
     }
 
     @Override
