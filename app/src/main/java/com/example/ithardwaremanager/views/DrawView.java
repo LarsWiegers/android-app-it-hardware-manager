@@ -1,13 +1,11 @@
 package com.example.ithardwaremanager.views;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 public class DrawView extends View {
@@ -54,6 +52,7 @@ public class DrawView extends View {
             canvas.drawRect(inner, white);
 
             String text = textToBeWritten;
+            // try to get the text to the middle of the box
             this.setTextSizeForWidth(paint, size.width() / 4, text);
             canvas.drawText(text,size.right / 2 - paint.measureText(text) / 2,
                     size.height() / 2 + paint.measureText(text) / 2 + padding

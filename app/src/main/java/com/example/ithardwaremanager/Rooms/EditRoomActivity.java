@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.example.ithardwaremanager.MainActivity;
@@ -27,16 +26,25 @@ public class EditRoomActivity extends AppCompatActivity {
             Intent intent = getIntent();
             room = intent.getParcelableExtra("room");
 
-            TextView nameField = findViewById(R.id.name);
-            TextView descriptionField = findViewById(R.id.description);
-
-            nameField.setText(room.getName());
-            descriptionField.setText(room.getDescription());
+            setText(room);
         }
-
-
     }
 
+    /**
+     * Set the text of the fields, should only be called after the room is set
+     */
+    private void setText(Room room) {
+        TextView nameField = findViewById(R.id.name);
+        TextView descriptionField = findViewById(R.id.description);
+
+        nameField.setText(room.getName());
+        descriptionField.setText(room.getDescription());
+    }
+
+    /**
+     * Handle the add click button event, get the data and add it to storage, go back to prev view
+     * @param view the add button
+     */
     public void onClickAddButton(View view) {
 
         TextView nameField = findViewById(R.id.name);

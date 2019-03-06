@@ -2,14 +2,12 @@ package com.example.ithardwaremanager;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.OrientationEventListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,8 +23,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Parcelable> rooms;
-
+    /**
+     * Handles the onCreate event that is going to happen when the activity gets called
+     * @param savedInstanceState Used for android working correctly
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("lifeCycle: ", "onCreate");
@@ -56,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
      * Sets up the room list that is the main point of this activity
      */
     private void setupRoomList() {
-        rooms = StorageManager.getRooms();
-        BaseAdapter roomAdapter = new RoomAdapter(rooms, view -> {
+        BaseAdapter roomAdapter = new RoomAdapter(StorageManager.getRooms(), view -> {
             Intent intent = new Intent(MainActivity.this, ShowRoomActivity.class);
 
             ConstraintLayout parent = (ConstraintLayout) view.getParent();
             TextView name = parent.findViewById(R.id.name);
 
-            Parcelable room = Room.getByName(rooms, name.getText().toString());
+            Parcelable room = Room.getByName(StorageManager.getRooms(), name.getText().toString());
             intent.putExtra("room", room);
             startActivity(intent);
         });

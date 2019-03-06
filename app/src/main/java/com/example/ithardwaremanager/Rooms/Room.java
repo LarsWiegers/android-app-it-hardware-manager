@@ -17,18 +17,29 @@ public class Room implements Serializable, Parcelable {
     private ArrayList<Item> items = new ArrayList<>();
     private String description;
 
+    /**
+     * Main constructor used
+     * @param name the name
+     * @param description the description
+     */
     public Room(String name, String description) {
         this.setName(name);
         this.setDescription(description);
     }
 
+    /**
+     *
+     * @param rooms the rooms we are looking through
+     * @param name the name we are searching for
+     * @return the found room or null
+     */
     public static Parcelable getByName(ArrayList<Parcelable> rooms, String name) {
         for (Parcelable room: rooms) {
             if(((Room) room).getName().equals(name)) {
                 return room;
             }
         }
-        return null;
+        return null; // TODO should probably throw an exception here
     }
 
     public void setDescription(String description) {
@@ -38,24 +49,12 @@ public class Room implements Serializable, Parcelable {
         return this.description;
     }
 
-    public Room(JSONObject obj) throws JSONException {
-        this.setName(obj.getString("name"));
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-
-    public JSONObject toJSONObject() throws JSONException {
-        JSONObject obj = new JSONObject();
-        obj.put("name", this.getName());
-        obj.put("description", this.getDescription());
-        return obj;
     }
 
     public ArrayList<Item> getItems() {
@@ -104,6 +103,10 @@ public class Room implements Serializable, Parcelable {
         }
     };
 
+    /**
+     * Remove an item from the current items we have
+     * @param item the item to be removed
+     */
     public void removeItem(Item item) {
         for (int i = 0; i < this.items.size(); i++) {
             if(this.items.get(i).getName().equals(item.getName())) {

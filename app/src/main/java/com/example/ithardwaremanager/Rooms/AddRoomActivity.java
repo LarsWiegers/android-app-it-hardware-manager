@@ -2,10 +2,8 @@ package com.example.ithardwaremanager.Rooms;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.example.ithardwaremanager.MainActivity;
@@ -22,6 +20,10 @@ public class AddRoomActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * Handle the add click button event, get the data and add it to storage, go back to prev view
+     * @param view the add button
+     */
     public void onClickAddButton(View view) {
         TextView nameField = findViewById(R.id.name);
         TextView descriptionField = findViewById(R.id.description);

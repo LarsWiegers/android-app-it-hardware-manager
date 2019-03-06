@@ -43,6 +43,14 @@ public class RoomAdapter extends BaseAdapter {
         return (long) position;
     }
 
+
+    /**
+     * Display the list item view
+     * @param position the position of the list item
+     * @param convertView the view
+     * @param parent the parent view
+     * @return a list item
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItem = convertView;
