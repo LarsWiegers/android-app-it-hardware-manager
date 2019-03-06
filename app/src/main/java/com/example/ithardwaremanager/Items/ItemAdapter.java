@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.Rooms.Room;
+import com.example.ithardwaremanager.views.DrawView;
 import com.example.ithardwaremanager.views.listItem;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class ItemAdapter extends BaseAdapter {
         if (convertView == null) {
              listItem = new listItem(parent.getContext());
         }
+        DrawView.shouldDraw(false);
         Item item = (Item) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
         name.setText(item.getName());

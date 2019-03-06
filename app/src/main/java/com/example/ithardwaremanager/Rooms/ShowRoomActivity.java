@@ -54,6 +54,12 @@ public class ShowRoomActivity extends AppCompatActivity {
         setupRoomList();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ShowRoomActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     /**
      * Sets up the room list that is the main point of this activity
      */

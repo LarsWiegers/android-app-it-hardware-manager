@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ithardwaremanager.R;
+import com.example.ithardwaremanager.views.DrawView;
 import com.example.ithardwaremanager.views.listItem;
 
 import java.util.ArrayList;
@@ -48,9 +49,12 @@ public class RoomAdapter extends BaseAdapter {
         if (convertView == null) {
              listItem = new listItem(parent.getContext());
         }
+        DrawView.shouldDraw(true);
         Room room = (Room) this.getItem(position);
         TextView name = listItem.findViewById(R.id.name);
         name.setText(room.getName());
+        Log.i("set_text", "" + room.getItems().size());
+        DrawView.setText("" + room.getItems().size());
 
         Button button = listItem.findViewById(R.id.button);
         button.setOnClickListener(listener);
