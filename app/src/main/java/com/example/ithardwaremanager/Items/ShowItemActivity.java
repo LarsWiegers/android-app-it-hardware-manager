@@ -7,13 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.ithardwaremanager.BaseActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.Rooms.EditRoomActivity;
 import com.example.ithardwaremanager.Rooms.Room;
 import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
 import com.example.ithardwaremanager.storage.StorageManager;
 
-public class ShowItemActivity extends AppCompatActivity {
+public class ShowItemActivity extends BaseActivity {
     Item item;
     Room room;
 

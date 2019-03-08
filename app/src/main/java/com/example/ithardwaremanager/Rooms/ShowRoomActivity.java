@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ithardwaremanager.BaseActivity;
 import com.example.ithardwaremanager.Items.AddItemActivity;
 import com.example.ithardwaremanager.Items.Item;
 import com.example.ithardwaremanager.Items.ItemAdapter;
@@ -24,7 +25,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class ShowRoomActivity extends AppCompatActivity {
+public class ShowRoomActivity extends BaseActivity {
 
     /**
      * Hold the room in the activity so we can use it through out the different methods

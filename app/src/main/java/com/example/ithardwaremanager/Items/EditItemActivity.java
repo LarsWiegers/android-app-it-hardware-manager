@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.ithardwaremanager.BaseActivity;
 import com.example.ithardwaremanager.R;
 import com.example.ithardwaremanager.Rooms.Room;
 import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
 
-public class EditItemActivity extends AppCompatActivity {
+public class EditItemActivity extends BaseActivity {
     Room room;
 
     @Override

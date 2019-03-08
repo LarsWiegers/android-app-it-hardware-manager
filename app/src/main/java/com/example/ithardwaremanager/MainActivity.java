@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -19,7 +18,7 @@ import com.example.ithardwaremanager.Rooms.RoomAdapter;
 import com.example.ithardwaremanager.Rooms.ShowRoomActivity;
 import com.example.ithardwaremanager.storage.StorageManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static boolean filledWithTestData = false;
     /**
